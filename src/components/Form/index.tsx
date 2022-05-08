@@ -1,15 +1,15 @@
-import React from 'react'
-import { Button } from '../Button'
+import { Button } from '../Button';
+import style from './Form.module.scss';
 
 export function Form() {
     return (
-        <form>
-            <div>
+        <form className={style.newTask}>
+            <div className={style.inputContainer}>
                 <label htmlFor="">Adicione um novo estudo</label>
-                <input type="text" placeholder='O que você ques estudar?' id="task" required/>
+                <input type="text" placeholder='O que você quer estudar?' id="task" required/>
             </div>
 
-            <div>
+            <div className={style.inputContainer}>
                 <label htmlFor="">Tempo</label>
                 <input type="time" id="time" required/>
             </div>

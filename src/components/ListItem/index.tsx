@@ -1,4 +1,5 @@
-import React from 'react'
+import style from './ListItem.module.scss';
+
 
 export interface ListItemProps {
     name: string,
@@ -7,7 +8,7 @@ export interface ListItemProps {
 
 export function ListItem({ name, duration }: ListItemProps) {
   return (
-    <li>
+    <li className={style.item}>
         <h3>{name}</h3>
 
         <span>{duration}</span>

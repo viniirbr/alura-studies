@@ -1,5 +1,5 @@
-import React from 'react'
-import { ListItem, ListItemProps } from '../ListItem'
+import { ListItem, ListItemProps } from '../ListItem';
+import style from './List.module.scss'
 
 interface ListProps {
     list: ListItemProps[]
@@ -7,7 +7,7 @@ interface ListProps {
 
 export function List({ list }: ListProps) {
   return (
-    <aside>
+    <aside className={style.listaTarefas}>
         <ul>
             {list.map((item, key) => <ListItem name={item.name} duration={item.duration} key={key}/>)}
         </ul>

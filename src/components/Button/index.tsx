@@ -1,7 +1,6 @@
-import React from 'react'
-
+import style from './Button.module.scss'
 export function Button() {
   return (
-    <button>Enviar</button>
+    <button className={style.button}>Enviar</button>
   )
 }
