@@ -3,7 +3,7 @@ import style from './ListItem.module.scss';
 
 export interface ListItemProps {
     name: string,
-    duration: number
+    duration: string
 }
 
 export function ListItem({ name, duration }: ListItemProps) {
