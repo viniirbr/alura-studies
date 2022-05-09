@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { Button } from '../Button';
-import { ListItemProps } from '../List/ListItem';
+import { Task } from '../../../src/types';
 import style from './Form.module.scss';
+import { v4 as uuidv4 } from 'uuid'
+
 
 interface FormProps {
-    onTaskAdded: (task: ListItemProps) => void;
+    onTaskAdded: (React.Dispatch<React.SetStateAction<Task[]>>);
 }
 
 export function Form(props: FormProps) {
     
     const [taskName, setTaskName] = useState('');
-    const [duration, setDuration] = useState('');
+    const [duration, setDuration] = useState('00:00:00');
 
     function addTask(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        props.onTaskAdded({ name: taskName, duration: duration });
+        props.onTaskAdded((previousTasks) => [...previousTasks,{name: taskName, duration: duration, selected: false, completed: false, id: uuidv4()}]);
+        setTaskName("");
+        setDuration("");
     }
 
     return (

@@ -1,16 +1,21 @@
+import { Task } from '../../../types';
 import style from './ListItem.module.scss';
 
 
-export interface ListItemProps {
-    name: string,
-    duration: string
+interface ListItemProps extends Task {
+  selectTask: (task: Task) => void;
 }
 
-export function ListItem({ name, duration }: ListItemProps) {
+export function ListItem({ name, duration, completed, selected, id, selectTask }: ListItemProps) {
   return (
-    <li className={style.item}>
+    <li className={`${style.item} ${selected ? style.itemSelecionado : null}`} onClick={() => selectTask({
+      name,
+      duration,
+      completed,
+      selected,
+      id
+    })}>
         <h3>{name}</h3>
-
         <span>{duration}</span>
     </li>
   )
