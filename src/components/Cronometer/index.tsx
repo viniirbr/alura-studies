@@ -6,10 +6,11 @@ import style from './Cronometer.module.scss'
 import { Watch } from './Watch'
 
 interface CronometerProps {
-  taskSelected: Task | undefined
+  taskSelected: Task | undefined,
+  finishTask: () => void
 }
 
-export function Cronometer({ taskSelected }: CronometerProps) {
+export function Cronometer({ taskSelected, finishTask }: CronometerProps) {
 
   const [time, setTime] = useState<number>();
 
@@ -17,16 +18,25 @@ export function Cronometer({ taskSelected }: CronometerProps) {
     if (taskSelected?.duration) {
       setTime(timeToSeconds(taskSelected.duration))
     }
-  }, [taskSelected])
+  }, [taskSelected]);
+
+  function startCounting(counter: number=0) {
+    setTimeout(()=> {
+      if (counter>0) {
+        setTime(counter-1);
+        return startCounting(counter-1);
+      }
+      finishTask();
+    }, 1000)
+  }
 
   return (
     <div className={style.cronometer}>
       <p className={style.title}>Escolha um card e inicie o cronômetro</p>
-      <p>{time}</p>
       <div className={style.watchWrapper}>
-        <Watch />
+        <Watch time={time}/>
       </div>
-      <Button text='Iniciar' type='button' />
+      <Button text='Iniciar' type='button' onClick={() => startCounting(time)}/>
     </div>
   )
 }

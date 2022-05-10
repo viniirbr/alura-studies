@@ -17,11 +17,24 @@ function App() {
     })))
   }
 
+  function finishTask() {
+    setTasks(tasks.map(task => {
+      if (task.id === taskSelected?.id) {
+        return {
+          ...task,
+          selected: false,
+          completed: true
+        }
+      }
+      return task;
+    }))
+  }
+
   return (
     <div className={style.AppStyle}>
       <Form onTaskAdded={setTasks}/>
       <List list={tasks} selectTask={selectTask}/>
-      <Cronometer taskSelected={taskSelected}/>
+      <Cronometer taskSelected={taskSelected} finishTask={finishTask}/>
     </div>
   );
 }
